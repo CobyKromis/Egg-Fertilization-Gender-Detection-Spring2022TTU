@@ -32,9 +32,14 @@ OGW = 3024
 def sizeChange(img, oh, ow):
     rImg = img
 
-    if img.shape == (oh, ow):
-        rImg = patchify(img, (256, 256), step=256)
-
+    #if image shape is OGHxOGW defined above or 768x1024 then resize image to 1/4 size
+    #re-define OGH and OGW as needed for your application
+    if img.shape == (oh,ow, 3):
+        rImg = cv.resize(img, (0,0), fx=0.25, fy=0.25)
+        
+    if img.shape == (768,1024, 3):
+        rImg = cv.resize(img, (0,0), fx=0.25, fy=0.25)
+        
     return rImg
 
 #Mask for brown eggs - THey glow orange in the candling process
